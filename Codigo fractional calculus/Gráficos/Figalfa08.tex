@@ -1,0 +1,43 @@
+\documentclass[tikz,10pt,border=20pt]{standalone}
+\usetikzlibrary{plotmarks}
+\usepackage{tikz}
+\usetikzlibrary{spy} 
+
+\usepackage{pgfplotstable}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{physics}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{lmodern}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+	\pgfplotsset{
+		width=20cm,
+		height=15cm,
+		tick label style={font=\normalsize},
+		label style={font=\normalsize},
+		legend style={font=\scriptsize,cells={anchor=west}},
+		legend columns=1,
+		legend pos=outer north east
+	}
+	\begin{tikzpicture}
+		\begin{axis}[, xlabel={$z$},
+			ylabel={Conversion (C)},
+			grid=major,
+			width=10cm,
+			height=6cm,
+			axis lines=left,
+			enlargelimits=true,
+			legend image post style={scale=0.5}
+			] 
+			\addplot[blue,mark=none,line width=1.5pt] table[x expr = \thisrowno{0},y expr = \thisrowno{1},each nth point={1}]{datapodblunialfa08.dat};
+			%\addlegendentry{Podbluni $\alpha = 0.8$}
+			\addplot[red,mark=none,line width=1.5pt] table[x expr = \thisrowno{0},y expr = \thisrowno{1},each nth point={1}]{datanuestraalfa08.dat};
+			%\addlegendentry{New comformable $\alpha = 0.8$}
+		\end{axis}
+		;
+	\end{tikzpicture}
+\end{document}

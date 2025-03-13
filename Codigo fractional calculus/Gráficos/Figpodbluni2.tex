@@ -1,0 +1,55 @@
+\documentclass[tikz,10pt,border=20pt]{standalone}
+\usetikzlibrary{plotmarks}
+\usepackage{tikz}
+\usetikzlibrary{spy} 
+
+\usepackage{pgfplotstable}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{physics}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{lmodern}
+\pgfplotsset{compat=1.18}
+\usepackage{xcolor} % Permite definir colores personalizados
+
+% Definir colores en escala de azul
+\definecolor{blue1}{RGB}{0, 0, 255}    % Azul clásico
+\definecolor{blue2}{RGB}{30, 144, 255} % Azul DodgerBlue
+\definecolor{blue3}{RGB}{70, 130, 180} % Azul SteelBlue
+\definecolor{blue4}{RGB}{100, 149, 237} % Azul CornflowerBlue
+
+
+\begin{document}
+	\pgfplotsset{
+		width=20cm,
+		height=15cm,
+		tick label style={font=\normalsize},
+		label style={font=\normalsize},
+		legend style={font=\scriptsize,cells={anchor=west}},
+		legend columns=1,
+		legend pos=outer north east
+	}
+	\begin{tikzpicture}
+		\begin{axis}[, xlabel={$z$},
+			ylabel={Absolute Temperature},
+			grid=major,
+			width=10cm,
+			height=6cm,
+			axis lines=left,
+			enlargelimits=true,
+			legend image post style={scale=0.5}
+			] 
+			\addplot[black,mark=none,style = {dashed},line width=1.5pt] table[x expr = \thisrowno{0},y expr = \thisrowno{1},each nth point={1}]{datapodblunialfa21.dat};
+			%\addlegendentry{Podbluni Discretization}
+			\addplot[cyan,mark=none,line width=1.5pt] table[x expr = \thisrowno{0},y expr = \thisrowno{1},each nth point={1}]{datapodblunialfa205.dat};
+			%\addlegendentry{Podbluni $\alpha = 0.5$}
+			\addplot[green,mark=none,line width=1.5pt] table[x expr = \thisrowno{0},y expr = \thisrowno{1},each nth point={1}]{datapodblunialfa208.dat};
+			%\addlegendentry{Podbluni $\alpha = 0.8$}
+			\addplot[yellow,mark=none,line width=1.5pt] table[x expr = \thisrowno{0},y expr = \thisrowno{1},each nth point={1}]{datapodblunialfa209.dat};
+			%\addlegendentry{Podbluni $\alpha = 0.9$}
+		\end{axis}
+		;
+	\end{tikzpicture}
+\end{document}
